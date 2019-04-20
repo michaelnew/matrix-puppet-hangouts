@@ -62,7 +62,7 @@ class App extends MatrixPuppetBridgeBase {
               sendStatusMsg({}, "handleThirdPartyRoomMessage error", err);
             });
           }
-          // image message
+          // message with attachment
           return Promise.all(data.attachments.map((attachment)=> {
             const payload = {
               roomId: data.conversation_id,
@@ -72,7 +72,7 @@ class App extends MatrixPuppetBridgeBase {
               url: attachment,
               avatarUrl: data.photo_url,
             };
-            return this.handleThirdPartyRoomImageMessage(payload).catch(err => {
+            return this.handleThirdPartyRoomMessageWithAttachment(payload).catch(err => {
               console.log("handleThirdPartyRoomMessage error", err);
               sendStatusMsg({}, "handleThirdPartyRoomMessage error", err);
             });
